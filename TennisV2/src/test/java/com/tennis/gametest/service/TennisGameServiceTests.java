@@ -20,6 +20,7 @@ class TennisGameServiceTests {
 	private static final String SCORE_LOVE_ALL = "Love All";
 	private static final String SCORE_FIFTEEN_ALL = "Fifteen All";
 	private static final Integer ZERO = 0;
+	private static final String SCORE_THIRTY_ALL = "Thirty All";
 
 	@BeforeEach
 	public void setUp() {
@@ -39,5 +40,15 @@ class TennisGameServiceTests {
 		playerTwoScore.playerTwoScored();
 		assertThat(tennisGameService.getGameScore(playerOneScore.getPlayerOneScored(),
 				playerTwoScore.getPlayerTwoScored())).isEqualTo(SCORE_FIFTEEN_ALL);
+	}
+	
+	@Test
+	void testWhenBothPlayerIsAtTwo() {
+		playerOneScore.playerOneScored();
+		playerTwoScore.playerTwoScored();
+		playerOneScore.playerOneScored();
+		playerTwoScore.playerTwoScored();
+		assertThat(tennisGameService.getGameScore(playerOneScore.getPlayerOneScored(),
+				playerTwoScore.getPlayerTwoScored())).isEqualTo(SCORE_THIRTY_ALL);
 	}
 }
