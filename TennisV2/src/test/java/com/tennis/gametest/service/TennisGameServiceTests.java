@@ -17,6 +17,9 @@ class TennisGameServiceTests {
 	private TennisGameService tennisGameService;
 	private PlayerOneScore playerOneScore;
 	private PlayerTwoScore playerTwoScore;
+	private static final String SCORE_LOVE_ALL = "Love All";
+	private static final String SCORE_FIFTEEN_ALL = "Fifteen All";
+	private static final Integer ZERO = 0;
 
 	@BeforeEach
 	public void setUp() {
@@ -27,7 +30,7 @@ class TennisGameServiceTests {
 
 	@Test
 	void testWhenBothPlayerIsAtZero() {
-		assertThat(tennisGameService.getGameScore(0, 0)).isEqualTo("Love All");
+		assertThat(tennisGameService.getGameScore(ZERO, ZERO)).isEqualTo(SCORE_LOVE_ALL);
 	}
 
 	@Test
@@ -35,6 +38,6 @@ class TennisGameServiceTests {
 		playerOneScore.playerOneScored();
 		playerTwoScore.playerTwoScored();
 		assertThat(tennisGameService.getGameScore(playerOneScore.getPlayerOneScored(),
-				playerTwoScore.getPlayerTwoScored())).isEqualTo("Fifteen All");
+				playerTwoScore.getPlayerTwoScored())).isEqualTo(SCORE_FIFTEEN_ALL);
 	}
 }

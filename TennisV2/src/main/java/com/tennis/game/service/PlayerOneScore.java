@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class PlayerOneScore {
 
 	private int playerOneScore;
+	private static final int ZERO = 0;
 
 	public void playerOneScored() {
 		playerOneScore++;
@@ -16,8 +17,8 @@ public class PlayerOneScore {
 	}
 
 	public void setScoreForPlayerOne(String playerOneScore) {
-		this.playerOneScore = 0;
-		for (int i = 0; i < Integer.parseInt(playerOneScore); i++) {
+		this.playerOneScore = ZERO;
+		for (int i = ZERO; i < Integer.parseInt(playerOneScore); i++) {
 			playerOneScored();
 		}
 	}

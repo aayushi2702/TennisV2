@@ -17,7 +17,9 @@ import com.tennis.game.service.TennisGameService;
 @RunWith(SpringRunner.class)
 @WebMvcTest
 class TennisGameControllerTests {
-
+	
+	private static final Integer ZERO = 0;
+	
 	@Autowired
 	private MockMvc mockMvc;
 
@@ -27,7 +29,7 @@ class TennisGameControllerTests {
 	@Test
 	void gameAPITest() throws Exception {
 
-		when(tennisGameService.getGameScore(0, 0)).thenReturn("");
+		when(tennisGameService.getGameScore(ZERO, ZERO)).thenReturn("");
 		mockMvc.perform(get("/getGameScore?playerOneScore=0 & playerTwoScore=0")).andExpect(status().isOk());
 	}
 }
