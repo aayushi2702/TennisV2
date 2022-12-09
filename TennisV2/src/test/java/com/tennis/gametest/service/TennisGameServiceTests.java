@@ -2,6 +2,7 @@ package com.tennis.gametest.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -13,7 +14,16 @@ import com.tennis.game.service.TennisGameService;
 @RunWith(MockitoJUnitRunner.class)
 class TennisGameServiceTests {
 
-	private TennisGameService tennisGameService = new TennisGameService();
+	private TennisGameService tennisGameService;
+	private PlayerOneScore playerOneScore;
+	private PlayerTwoScore playerTwoScore;
+
+	@BeforeEach
+	public void setUp() {
+		tennisGameService = new TennisGameService();
+		playerOneScore = new PlayerOneScore();
+		playerTwoScore = new PlayerTwoScore();
+	}
 
 	@Test
 	void testWhenBothPlayerIsAtZero() {
@@ -22,9 +32,6 @@ class TennisGameServiceTests {
 
 	@Test
 	void testWhenBothPlayerIsAtOne() {
-		TennisGameService tennisGameService = new TennisGameService();
-		PlayerOneScore playerOneScore = new PlayerOneScore();
-		PlayerTwoScore playerTwoScore = new PlayerTwoScore();
 		playerOneScore.playerOneScored();
 		playerTwoScore.playerTwoScored();
 		assertThat(tennisGameService.getGameScore(playerOneScore.getPlayerOneScored(),
