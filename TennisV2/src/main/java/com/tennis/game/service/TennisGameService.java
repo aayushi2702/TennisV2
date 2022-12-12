@@ -27,18 +27,20 @@ public class TennisGameService {
 				return SCORE_FIFTEEN_ALL;
 			} else if (playerOneScore == TWO) {
 				return SCORE_THIRTY_ALL;
-			}
-			else {
+			} else {
 				return DEUCE;
 			}
-		}else {
-			if(Math.abs(playerOneScore-playerTwoScore)==1) {
-				return ADVANTAGE + " "+ (playerOneScore > playerTwoScore ? PLAYERONE : PLAYERTWO) ;
-			}
-			else {
-				return GAME + " "+ (playerOneScore > playerTwoScore ? PLAYERONE : PLAYERTWO) ;
+		} else {
+			if (pointDifferenceIsOne(playerOneScore, playerTwoScore)) {
+				return ADVANTAGE + " " + (playerOneScore > playerTwoScore ? PLAYERONE : PLAYERTWO);
+			} else {
+				return GAME + " " + (playerOneScore > playerTwoScore ? PLAYERONE : PLAYERTWO);
 			}
 		}
+	}
+
+	private boolean pointDifferenceIsOne(int playerOneScore, int playerTwoScore) {
+		return Math.abs(playerOneScore - playerTwoScore) == 1;
 	}
 
 }
