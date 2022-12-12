@@ -19,6 +19,10 @@ public class TennisGameService {
 	private static final String PLAYERTWO = "PlayerTwoName";
 	private static final String GAME = "Game";
 	private static final String SCORE_LOVE_FIFTEEN = "Love Fifteen";
+	private static final String SCORE_LOVE = "Love";
+	private static final String SCORE_FIFTEEN = "Fifteen";
+	private static final String SCORE_THIRTY = "Thirty";
+	private static final String SCORE_FORTY = "Forty";
 
 	public String getGameScore(Integer playerOneScore, Integer playerTwoScore) {
 		if (Objects.equals(playerOneScore, playerTwoScore)) {
@@ -39,7 +43,7 @@ public class TennisGameService {
 					return GAME.concat(" ").concat(getHighScorerPlayerName(playerOneScore, playerTwoScore));
 				}
 			}else {
-				return SCORE_LOVE_FIFTEEN;
+				return getPlayerScore(playerOneScore) +" "+ getPlayerScore(playerTwoScore);
 			}
 		}
 	}
@@ -50,6 +54,17 @@ public class TennisGameService {
 
 	private String getHighScorerPlayerName(int playerOneScore, int playerTwoScore) {
 		return playerOneScore > playerTwoScore ? PLAYERONE : PLAYERTWO;
+	}
+	
+	private String getPlayerScore(int playerScore) {
+		if(playerScore==0)
+			return SCORE_LOVE;
+		else if(playerScore==1)
+			return SCORE_FIFTEEN;
+		else if(playerScore==2)
+			return SCORE_THIRTY;
+		else
+			return SCORE_FORTY;
 	}
 
 }
