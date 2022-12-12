@@ -90,4 +90,12 @@ class TennisGameServiceTests {
 		assertThat(tennisGameService.getGameScore(playerOneScore.getPlayerOneScored(),
 				playerTwoScore.getPlayerTwoScored())).isEqualTo("Game PlayerTwoName");
 	}
+	
+	@Test
+	void testWhenOnePlayerIsAtZeroAndOtherIsAtOne() {
+		playerOneScore.setScoreForPlayerOne(ZERO);
+		playerTwoScore.setScoreForPlayerTwo(ONE);
+		assertThat(tennisGameService.getGameScore(playerOneScore.getPlayerOneScored(),
+				playerTwoScore.getPlayerTwoScored())).isEqualTo("Love Fifteen");
+	}
 }
