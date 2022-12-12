@@ -57,4 +57,11 @@ class TennisGameServiceTests {
 				playerTwoScore.getPlayerTwoScored())).isEqualTo(SCORE_THIRTY_ALL);
 	}
 	
+	@Test
+	void testWhenBothPlayerIsAtThree() {
+		playerOneScore.setScoreForPlayerOne(THREE);
+		playerTwoScore.setScoreForPlayerTwo(THREE);
+		assertThat(tennisGameService.getGameScore(playerOneScore.getPlayerOneScored(),
+				playerTwoScore.getPlayerTwoScored())).isEqualTo(DEUCE);
+	}
 }
