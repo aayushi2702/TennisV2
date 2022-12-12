@@ -25,6 +25,7 @@ class TennisGameServiceTests {
 	private static final String ONE = "1";
 	private static final String TWO = "2";
 	private static final String THREE = "3";
+	private static final String FOUR = "4";
 
 	@BeforeEach
 	public void setUp() {
@@ -63,5 +64,13 @@ class TennisGameServiceTests {
 		playerTwoScore.setScoreForPlayerTwo(THREE);
 		assertThat(tennisGameService.getGameScore(playerOneScore.getPlayerOneScored(),
 				playerTwoScore.getPlayerTwoScored())).isEqualTo(DEUCE);
+	}
+	
+	@Test
+	void testWhenBothPlayerIsAtThree1() {
+		playerOneScore.setScoreForPlayerOne(FOUR);
+		playerTwoScore.setScoreForPlayerTwo(THREE);
+		assertThat(tennisGameService.getGameScore(playerOneScore.getPlayerOneScored(),
+				playerTwoScore.getPlayerTwoScored())).isEqualTo("Advantage PlayerOneName");
 	}
 }
