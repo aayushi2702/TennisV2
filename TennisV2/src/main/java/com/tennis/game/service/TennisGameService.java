@@ -32,15 +32,19 @@ public class TennisGameService {
 			}
 		} else {
 			if (pointDifferenceIsOne(playerOneScore, playerTwoScore)) {
-				return ADVANTAGE + " " + (playerOneScore > playerTwoScore ? PLAYERONE : PLAYERTWO);
+				return ADVANTAGE.concat(" ").concat(getHighScorerPlayerName(playerOneScore, playerTwoScore));
 			} else {
-				return GAME + " " + (playerOneScore > playerTwoScore ? PLAYERONE : PLAYERTWO);
+				return GAME.concat(" ").concat(getHighScorerPlayerName(playerOneScore, playerTwoScore));
 			}
 		}
 	}
 
 	private boolean pointDifferenceIsOne(int playerOneScore, int playerTwoScore) {
 		return Math.abs(playerOneScore - playerTwoScore) == 1;
+	}
+
+	private String getHighScorerPlayerName(int playerOneScore, int playerTwoScore) {
+		return playerOneScore > playerTwoScore ? PLAYERONE : PLAYERTWO;
 	}
 
 }
