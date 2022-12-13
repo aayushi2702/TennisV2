@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import com.tennis.game.exceptions.WrongInputExceptionHandler;
 import com.tennis.game.service.PlayerOneScore;
 import com.tennis.game.service.PlayerTwoScore;
 import com.tennis.game.service.TennisGameService;
@@ -58,7 +59,7 @@ class TennisGameServiceTests {
 		"4,1,Game PlayerOneName",
 		"4,2,Game PlayerOneName",
 	})
-	void parameterizedTestCaseforEachTest(String playerOneScored, String playerTwoScored, String expectedScore) {
+	void parameterizedTestCaseforEachTest(String playerOneScored, String playerTwoScored, String expectedScore) throws WrongInputExceptionHandler {
 		playerOneScore.setScoreForPlayerOne(playerOneScored);
 		playerTwoScore.setScoreForPlayerTwo(playerTwoScored);
 		assertThat(tennisGameService.getGameScore(playerOneScore.getPlayerOneScored(),
