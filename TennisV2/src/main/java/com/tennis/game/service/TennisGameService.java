@@ -20,19 +20,23 @@ public class TennisGameService {
 	private static final String SCORE_FORTY = "Forty";
 	private static final String STRING_ALL = "All";
 	private static final Map<Integer, String> SCORE_MAP = new HashMap<>();
+	private static final int ZERO = 0;
+	private static final int ONE = 1;
+	private static final int TWO = 2;
+	private static final int THREE = 3;
 
 	static {
-		SCORE_MAP.put(0, SCORE_LOVE);
-		SCORE_MAP.put(1, SCORE_FIFTEEN);
-		SCORE_MAP.put(2, SCORE_THIRTY);
-		SCORE_MAP.put(3, SCORE_FORTY);
+		SCORE_MAP.put(ZERO, SCORE_LOVE);
+		SCORE_MAP.put(ONE, SCORE_FIFTEEN);
+		SCORE_MAP.put(TWO, SCORE_THIRTY);
+		SCORE_MAP.put(THREE, SCORE_FORTY);
 	}
 
 	public String getGameScore(Integer playerOneScore, Integer playerTwoScore) {
 		if (Objects.equals(playerOneScore, playerTwoScore)) {
-			return playerOneScore > 2 ? DEUCE : getPlayerScore(playerOneScore).concat(" ").concat(STRING_ALL);
+			return playerOneScore > TWO ? DEUCE : getPlayerScore(playerOneScore).concat(" ").concat(STRING_ALL);
 		} else {
-			if (Math.max(playerTwoScore, playerOneScore) > 3) {
+			if (Math.max(playerTwoScore, playerOneScore) > THREE) {
 				return (pointDifferenceIsOne(playerOneScore, playerTwoScore) ? ADVANTAGE : GAME).concat(" ")
 						.concat(getHighScorerPlayerName(playerOneScore, playerTwoScore));
 			} else {
@@ -42,7 +46,7 @@ public class TennisGameService {
 	}
 
 	private boolean pointDifferenceIsOne(int playerOneScore, int playerTwoScore) {
-		return Math.abs(playerOneScore - playerTwoScore) == 1;
+		return Math.abs(playerOneScore - playerTwoScore) == ONE;
 	}
 
 	private String getHighScorerPlayerName(int playerOneScore, int playerTwoScore) {
